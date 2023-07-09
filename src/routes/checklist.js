@@ -6,7 +6,7 @@ const Checklist = require('../models/checklist');
 
 router.get(`/`, async (req, res) => {
     try {
-        let checklists = await Checklist.find({});
+        let checklists = await Checklist.find({}).populate('tasks');
         res.status(200).render('checklists/index', { checklists: checklists });
     } catch(err) {
         res.status(500).render('pages/error', { error: 'Erro ao exibir as listas' });
